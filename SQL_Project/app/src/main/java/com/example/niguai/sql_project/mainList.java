@@ -1,25 +1,67 @@
 package com.example.niguai.sql_project;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class mainList extends AppCompatActivity {
 
     ArrayList<restaurant> res_list = new ArrayList<>();
+    private ExecutorService service;
+    private OkHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
+    }
+
+    private void handleRequestInBackground(final String account, final String pass){
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                HttpUrl.Builder builder = HttpUrl.parse("http://140.136.150.95:3000/search/hot").newBuilder();
+
+                Request request = new Request.Builder()
+                        .url(builder.toString())
+                        .build();
+                try {
+                    final Response response = client.newCall(request).execute();
+                    String resStr = response.body().string();
+                    final List<restaurant> jsonData = new Gson().fromJson(resStr, new TypeToken<List<restaurant>>(){}.getType());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
     }
 
     class costListView extends BaseAdapter{
@@ -51,8 +93,18 @@ public class mainList extends AppCompatActivity {
             }else{
                 item = (listItem) view.getTag();
             }
-            //item.image.setText(arr1[i]);
-            //item.text.setText(arr2[i]);
+            item.ID.setText(res_list.get(i).getID());
+            item.Name.setText(res_list.get(i).getName());
+            item.res_Address.setText(res_list.get(i).getRes_Address());
+            item.res_LAT = res_list.get(i).res_LAT;
+            item.res_LNG = res_list.get(i).res_LNG;
+            item.res_Cost.setText(res_list.get(i).getRes_Cost());
+            item.res_Envir_Score = res_list.get(i).getRes_Envir_Score();
+            item.res_Pic.setText(res_list.get(i).getRes_Pic());
+            item.res_Hour = res_list.get(i).getRes_Hour();
+            item.res_service_Score = res_list.get(i).getRes_service_Score();
+
+
 
             return view;
         }
