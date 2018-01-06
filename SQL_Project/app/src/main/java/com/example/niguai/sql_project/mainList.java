@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -47,6 +48,17 @@ public class mainList extends AppCompatActivity {
         client = new OkHttpClient();
         service = Executors.newSingleThreadExecutor();
         handleRequestInBackground();
+
+        mainList.setOnItemClickListener(new ListView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                intent.setClass(mainList.this, resDetail.class);
+                intent.putExtra("value","Hello World");
+                startActivity(intent);
+                mainList.this.finish();
+            }
+        });
     }
 
     private void handleRequestInBackground(){
