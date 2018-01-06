@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -29,14 +32,24 @@ public class mainList extends AppCompatActivity {
     ArrayList<restaurant> res_list = new ArrayList<>();
     private ExecutorService service;
     private OkHttpClient client;
+    ListView mainList;
+    costListView adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
+        mainList = (ListView)findViewById(R.id.mainList);
+
+        adapter = new costListView();
+        mainList.setAdapter(adapter);
+
+        client = new OkHttpClient();
+        service = Executors.newSingleThreadExecutor();
+        handleRequestInBackground();
     }
 
-    private void handleRequestInBackground(final String account, final String pass){
+    private void handleRequestInBackground(){
         service.submit(new Runnable() {
             @Override
             public void run() {
@@ -47,11 +60,18 @@ public class mainList extends AppCompatActivity {
                         .build();
                 try {
                     final Response response = client.newCall(request).execute();
-                    String resStr = response.body().string();
+                    final String resStr = response.body().string();
+                    Log.e("Object",resStr);
                     final List<restaurant> jsonData = new Gson().fromJson(resStr, new TypeToken<List<restaurant>>(){}.getType());
+                    Log.e("JSON DATA IS :",jsonData.toString());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            int i=0;
+                            for(restaurant json : jsonData) {
+                                res_list.add(json);
+                            }
+                            adapter.notifyDataSetChanged();
 
                         }
                     });
@@ -87,41 +107,47 @@ public class mainList extends AppCompatActivity {
             if(view == null){
                 view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.list_item,null);
                 item = new listItem();
-                item.ID = (TextView) view.findViewById(R.id.image);
-                item.Name = (TextView) view.findViewById(R.id.text);
+                item.Name = (TextView) view.findViewById(R.id.Name);
+                item.res_Pic = (TextView) view.findViewById(R.id.res_Pic);
+                item.res_Address = (TextView) view.findViewById(R.id.res_Address);
+                item.res_Tel = (TextView) view.findViewById(R.id.res_Tel);
                 view.setTag(item);
             }else{
                 item = (listItem) view.getTag();
             }
-            item.ID.setText(res_list.get(i).getID());
             item.Name.setText(res_list.get(i).getName());
+            item.res_Pic.setText(res_list.get(i).getRes_Pic());
             item.res_Address.setText(res_list.get(i).getRes_Address());
+            item.res_Tel.setText(res_list.get(i).getRes_Tel());
+            item.ID = res_list.get(i).getID();
             item.res_LAT = res_list.get(i).res_LAT;
             item.res_LNG = res_list.get(i).res_LNG;
-            item.res_Cost.setText(res_list.get(i).getRes_Cost());
-            item.res_Envir_Score = res_list.get(i).getRes_Envir_Score();
-            item.res_Pic.setText(res_list.get(i).getRes_Pic());
-            item.res_Hour = res_list.get(i).getRes_Hour();
+            item.res_Cost = res_list.get(i).getRes_Cost();
+            item.typeName = res_list.get(i).getTypeName();
+            item.res_Summary = res_list.get(i).getRes_Summary();
+            item.res_Score = res_list.get(i).getRes_Score();
             item.res_service_Score = res_list.get(i).getRes_service_Score();
-
-
+            item.res_Taste_Score = res_list.get(i).getRes_Taste_Score();
+            item.res_service_Score = res_list.get(i).getRes_service_Score();
+            item.res_Envir_Score = res_list.get(i).getRes_Envir_Score();
+            item.res_Hour = res_list.get(i).getRes_Hour();
 
             return view;
         }
     }
 
     class listItem{
-        TextView ID;
         TextView Name;
-        String res_LAT;
-        String res_LNG;
         TextView res_Pic;
-        TextView res_Cost;
         TextView res_Address;
         TextView res_Tel;
-        TextView typeName;
+        String ID;
+        String res_LAT;
+        String res_LNG;
+        String res_Cost;
+        String typeName;
         String res_Summary;
-        TextView res_Score;
+        String res_Score;
         String res_Taste_Score;
         String res_service_Score;
         String res_Envir_Score;

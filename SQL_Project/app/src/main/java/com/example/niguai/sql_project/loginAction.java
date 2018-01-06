@@ -44,6 +44,10 @@ public class loginAction extends AppCompatActivity {
         loginAction.setOnClickListener(actionLogin);
         createAccount.setOnClickListener(actionCreate);
 
+        account.setText("ssss@gmail.com");
+        password.setText("12345678");
+
+
         client = new OkHttpClient();
         service = Executors.newSingleThreadExecutor();
     }
