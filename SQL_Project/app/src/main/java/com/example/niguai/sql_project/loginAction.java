@@ -37,7 +37,7 @@ public class loginAction extends AppCompatActivity {
 
         //page's item init
         account = (EditText) findViewById(R.id.account);
-        password = (EditText) findViewById(R.id.password);
+        password = (EditText) findViewById(R.id.account);
         loginAction = (Button) findViewById(R.id.login);
         createAccount = (Button) findViewById(R.id.create);
 
