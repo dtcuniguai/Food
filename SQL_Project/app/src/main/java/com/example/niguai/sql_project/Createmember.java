@@ -8,11 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -36,7 +32,7 @@ public class Createmember extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createmember);
         account = (TextView) findViewById(R.id.account);
-        password = (TextView) findViewById(R.id.password);
+        password = (TextView) findViewById(R.id.account);
         name = (TextView) findViewById(R.id.name);
         create = (Button) findViewById(R.id.createAction);
 

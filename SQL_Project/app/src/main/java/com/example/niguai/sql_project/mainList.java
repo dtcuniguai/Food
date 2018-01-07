@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,11 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import android.graphics.*;
+import android.os.*;
+import java.net.*;
+import java.io.*;
 
 public class mainList extends AppCompatActivity {
 
@@ -96,6 +102,26 @@ public class mainList extends AppCompatActivity {
         });
     }
 
+
+    private static Bitmap getBitmapFromURL(String imageUrl)
+    {
+        try
+        {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(input);
+            return bitmap;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     class costListView extends BaseAdapter{
 
         @Override
@@ -115,7 +141,7 @@ public class mainList extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            listItem item ;
+            final listItem item ;
             if(view == null){
                 view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.list_item,null);
                 item = new listItem();
@@ -123,6 +149,7 @@ public class mainList extends AppCompatActivity {
                 item.res_Pic = (TextView) view.findViewById(R.id.res_Pic);
                 item.res_Address = (TextView) view.findViewById(R.id.res_Address);
                 item.res_Tel = (TextView) view.findViewById(R.id.res_Tel);
+                item.res_Img = (ImageView) view.findViewById(R.id.resImage);
                 view.setTag(item);
             }else{
                 item = (listItem) view.getTag();
@@ -143,12 +170,28 @@ public class mainList extends AppCompatActivity {
             item.res_service_Score = res_list.get(i).getRes_service_Score();
             item.res_Envir_Score = res_list.get(i).getRes_Envir_Score();
             item.res_Hour = res_list.get(i).getRes_Hour();
+            new AsyncTask<String, Void, Bitmap>()
+            {
+                @Override
+                protected Bitmap doInBackground(String... params)
+                {
+                    String url = params[0];
+                    return getBitmapFromURL(url);
+                }
 
+                @Override
+                protected void onPostExecute(Bitmap result)
+                {
+                    item.res_Img.setImageBitmap (result);
+                    super.onPostExecute(result);
+                }
+            }.execute(res_list.get(i).getRes_Pic());
             return view;
         }
     }
 
     class listItem{
+        ImageView res_Img;
         TextView Name;
         TextView res_Pic;
         TextView res_Address;
