@@ -78,7 +78,7 @@ public class Createmember extends AppCompatActivity {
                             if(str.equals("success")){
                                 //TODO 跳出登入成功通知
                                 Intent intent = new Intent();
-                                intent.setClass(Createmember.this, mainList.class);
+                                intent.setClass(Createmember.this, hotMainList.class);
                                 startActivity(intent);
                                 Createmember.this.finish();
                             }else{

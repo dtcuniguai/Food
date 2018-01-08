@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.niguai.sql_project.search_page">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/next_text_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:layout_marginTop="125dp"
+            android:layout_toLeftOf="@+id/next_advanced_page"
+            android:layout_toStartOf="@+id/next_advanced_page"
+            android:text="文字搜尋" />
+
+        <Button
+            android:id="@+id/next_advanced_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/next_text_page"
+            android:layout_alignBottom="@+id/next_text_page"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="87dp"
+            android:layout_marginRight="87dp"
+            android:text="進階搜尋" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

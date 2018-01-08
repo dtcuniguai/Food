@@ -19,8 +19,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Createmember" />
-        <activity android:name=".mainList" />
-        <activity android:name=".resDetail"></activity>
+        <activity android:name=".resDetail" />
+        <activity android:name=".Advanced_search" />
+        <activity android:name=".search_list" />
+        <activity
+            android:name=".hotMainList"
+            android:label="@string/title_activity_hot_main_list"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

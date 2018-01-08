@@ -6,4 +6,149 @@
     android:layout_height="match_parent"
     tools:context="com.example.niguai.sql_project.resDetail">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/storeAddress"
+            android:layout_alignBottom="@+id/storeAddress"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:text="地址"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="343dp" />
+
+        <ImageView
+            android:id="@+id/storeImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:layout_toEndOf="@+id/textView6"
+            android:layout_toRightOf="@+id/textView6"
+            app:srcCompat="@android:color/background_light"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/storeImage"
+            android:layout_marginLeft="61dp"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="41dp"
+            android:text="餐廳名稱"
+            tools:layout_editor_absoluteX="101dp"
+            tools:layout_editor_absoluteY="202dp" />
+
+        <TextView
+            android:id="@+id/storeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignLeft="@+id/storeAddress"
+            android:layout_alignStart="@+id/storeAddress"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="193dp"
+            tools:layout_editor_absoluteY="202dp" />
+
+        <TextView
+            android:id="@+id/storeAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="83dp"
+            android:layout_marginStart="83dp"
+            android:layout_toEndOf="@+id/textView4"
+            android:layout_toRightOf="@+id/textView4"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="193dp"
+            tools:layout_editor_absoluteY="343dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/storePhone"
+            android:layout_alignBottom="@+id/storePhone"
+            android:layout_alignLeft="@+id/textView15"
+            android:layout_alignStart="@+id/textView15"
+            android:text="電話"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <TextView
+            android:id="@+id/storePhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/storeCost"
+            android:layout_alignLeft="@+id/storeCost"
+            android:layout_alignStart="@+id/storeCost"
+            android:layout_marginBottom="17dp"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="193dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/storeCost"
+            android:layout_alignBottom="@+id/storeCost"
+            android:layout_alignLeft="@+id/textView22"
+            android:layout_alignStart="@+id/textView22"
+            android:text="最低消費"
+            tools:layout_editor_absoluteX="101dp"
+            tools:layout_editor_absoluteY="295dp" />
+
+        <TextView
+            android:id="@+id/storeCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView22"
+            android:layout_alignLeft="@+id/storeInFo"
+            android:layout_alignStart="@+id/storeInFo"
+            android:layout_marginBottom="23dp"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="59dp"
+            tools:layout_editor_absoluteY="95dp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/storeInFo"
+            android:layout_alignBottom="@+id/storeInFo"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:text="餐廳訊息" />
+
+        <TextView
+            android:id="@+id/storeInFo"
+            android:layout_width="130dp"
+            android:layout_height="120dp"
+            android:layout_alignLeft="@+id/storeAddress"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/storeAddress"
+            android:layout_marginBottom="41dp"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="193dp"
+            tools:layout_editor_absoluteY="398dp" />
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

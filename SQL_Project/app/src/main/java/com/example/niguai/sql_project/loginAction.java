@@ -90,7 +90,7 @@ public class loginAction extends AppCompatActivity {
                         public void run() {
                             if(jsonData.size()>0){
                                 Intent intent = new Intent();
-                                intent.setClass(loginAction.this, mainList.class);
+                                intent.setClass(loginAction.this, hotMainList.class);
                                 startActivity(intent);
                                 loginAction.this.finish();
                             }else{

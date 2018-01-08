@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,6 +64,16 @@ public class mainList extends AppCompatActivity {
                 intent.putExtra("value","Hello World");
                 startActivity(intent);
                 mainList.this.finish();
+            }
+        });
+
+        Button next_text_search = (Button)findViewById(R.id.next_to_search);
+        next_text_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(mainList.this , search_page.class);
+                startActivity(intent);
             }
         });
     }
